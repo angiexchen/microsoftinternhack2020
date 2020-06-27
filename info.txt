@@ -1,0 +1,15 @@
+Application name: shortener-adf05
+Application settings (stored as environmental variables on server):
+  COGSVCS_CLIENTURL: https://westus2.api.cognitive.microsoft.com/
+  COGSVCS_KEY: f9a8b7b5881448e2b0a5208e0ee85036
+Deployment info:
+  Git url: https://shortener-adf05.scm.azurewebsites.net/shortener-adf05.git
+  User name: $shortener-adf05
+  User password: B6gqRYKfihLKfJj9aYbtRMtKpegW5kExhjKkjoxYadeh9mi4bhz7trp0jEjB
+Deployment steps:
+  1- Create git repository: git init
+  2- Add all code: git add .
+  3- Commit code: git commit -m 'Initial commit'
+  4- Add remote to git: git remote add azure https://shortener-adf05.scm.azurewebsites.net/shortener-adf05.git
+  5- Deploy to Azure: git push -u azure master
+Website url: https://shortener-adf05.azurewebsites.net
