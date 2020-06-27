@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, render_template
 from dotenv import load_dotenv
+from youtube_transcript_api import YouTubeTranscriptApi
 
 load_dotenv()
 
@@ -12,5 +13,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     if request.method == 'GET':
+        YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id, languages=['de', 'en'])
+        transcript = transcript_list.find_generated_transcript(['de', 'en'])
         return render_template('form.html')
-    
