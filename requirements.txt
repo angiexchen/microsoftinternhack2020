@@ -1,3 +1,5 @@
 flask
 python-dotenv
 youtube-transcript-api
+opencv-python
+scikit-image
