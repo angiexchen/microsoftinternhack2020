@@ -1,7 +1,26 @@
 import cv2 
 import os
-from PIL import Image
 from skimage.measure import compare_ssim
+from PIL import Image
+import numpy as np
+
+def filter_by_moving_average(image_files):
+    prev = None
+    hasPrev = False
+    diff = [0]*10
+    avg = 0 
+    prev = np.array(Image.open('./static/data/frame0.jpg'))
+    pruned = []
+    for image_file in image_files:
+        im = Image.open('./static/' + image_file)
+        current = np.array(im)
+        num = np.linalg.norm(current-prev)
+        diff= diff[1:]+ [num]
+        avg = np.average(diff)
+        if  num > 26000+(avg/2):
+            pruned.append(image_file)
+            prev = current 
+    return pruned
 
 def filter_by_ccsine_similarity(image_files):
     prev = None
@@ -21,7 +40,7 @@ def get_images():
     image_files = [] 
     for i in range(1,len(os.listdir('./static/data'))):
         image_files.append('data/frame' + str(i) + '.jpg')
-    return filter_by_ccsine_similarity(image_files)
+    return filter_by_ccsine_similarity(filter_by_moving_average(image_files))
 
 def convert_video_to_frames(): 
     # Read the video from specified path 
