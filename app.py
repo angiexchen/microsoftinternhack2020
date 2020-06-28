@@ -29,17 +29,16 @@ def index():
         print(type(t2))
         return render_template('response.html', message = t1)
 
-# def get_text(start, end, transcript):
-#     s = get_closest(start, transcript)
-#     e = get_closest(end, transcript)
-#     text = ''
-#     for i in range(s, e):
-#         text += transcript[i]["text"]
-#     return text
+def get_text(start, end, transcript):
+    s = get_closest(start, transcript)
+    e = get_closest(end, transcript)
+    text = ''
+    for i in range(s, e):
+        text += transcript[i][" text"]
+    return text
 
-# def get_closest(time, transcript, startIdx):
-#     if time < transcript[startIdx]["start"]:
-#         return "ERROR!"
+def get_closest(time, transcript, startIdx):
+    while ()
     
 
 
