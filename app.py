@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, render_template
 from dotenv import load_dotenv
+from youtube_transcript_api import YouTubeTranscriptApi
 
 load_dotenv()
 
@@ -15,5 +16,20 @@ def index():
         return render_template('form.html')
     elif request.method == 'POST':
         url = request.form.get("link")
-        return render_template('response.html', message = url)
+        # Find the video ID from the URL
+        startIdx = url.find('=')
+        endIndx = url.find('&')
+        if not (startIdx == -1 & endIndx == -1):
+            videoId = url[startIdx + 1: endIndx]
+        else: 
+            return render_template('error.html', message = "Invalid YouTube URL entered.")
+        YouTubeTranscriptApi.get_transcript(videoId)
+        transcript_list = YouTubeTranscriptApi.list_transcripts(videoId)
+        transcript = transcript_list.find_generated_transcript(['de', 'en'])
+        print(transcript_list)
+        print("\n\n")
+        print(transcript)
+        return render_template('response.html', message = videoId)
     
+
+        
