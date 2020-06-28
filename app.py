@@ -41,7 +41,7 @@ def index():
             result.append(obj)
         testlist = ["one", "two", "three"]
         
-        return render_template('response_example.html', message = t1, testlist = testlist, images=result)
+        return render_template('response.html', message = t1, testlist = testlist, images=result)
 
 def get_closest_less_than_or_equal(transcript, time): 
     text = ""
