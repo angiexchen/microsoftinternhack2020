@@ -15,20 +15,24 @@ def index():
     if request.method == 'GET':
         return render_template('form.html')
         
-    # elif request.method == 'POST':
-    #     url = request.form.get("link")
-    #     # Find the video ID from the URL
-    #     startIdx = url.find('=')
-    #     endIndx = url.find('&')
-    #     if not (startIdx == -1 & endIndx == -1):
-    #         videoId = url[startIdx + 1: endIndx]
-    #     else: 
-    #         return render_template('error.html', message = "Invalid YouTube URL entered.")
-    #     t1 = YouTubeTranscriptApi.get_transcript(videoId)
-    #     print(type(t1))
-    #     t2 = t1[0]
-    #     print(type(t2))
-    #     return render_template('response.html', message = t1)
+    elif request.method == 'POST':
+        url = request.form.get("link")
+        # Find the video ID from the URL
+        startIdx = url.find('=')
+        endIndx = url.find('&')
+        if not (startIdx == -1 & endIndx == -1):
+            videoId = url[startIdx + 1: endIndx]
+        else: 
+            return render_template('error.html', message = "Invalid YouTube URL entered.")
+        t1 = YouTubeTranscriptApi.get_transcript(videoId)
+        print(type(t1))
+        t2 = t1[0]
+        print(type(t2))
+
+        testlist = ["one", "two", "three"]
+        
+        return render_template('response.html', message = t1, testlist = testlist)
+
 
 # def get_text(start, end, transcript):
 #     s = get_closest(start, transcript)
