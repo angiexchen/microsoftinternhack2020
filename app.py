@@ -23,13 +23,25 @@ def index():
             videoId = url[startIdx + 1: endIndx]
         else: 
             return render_template('error.html', message = "Invalid YouTube URL entered.")
-        YouTubeTranscriptApi.get_transcript(videoId)
-        transcript_list = YouTubeTranscriptApi.list_transcripts(videoId)
-        transcript = transcript_list.find_generated_transcript(['de', 'en'])
-        print(transcript_list)
-        print("\n\n")
-        print(transcript)
-        return render_template('response.html', message = videoId)
+        t1 = YouTubeTranscriptApi.get_transcript(videoId)
+        print(type(t1))
+        t2 = t1[0]
+        print(type(t2))
+        return render_template('response.html', message = t1)
+
+# def get_text(start, end, transcript):
+#     s = get_closest(start, transcript)
+#     e = get_closest(end, transcript)
+#     text = ''
+#     for i in range(s, e):
+#         text += transcript[i]["text"]
+#     return text
+
+# def get_closest(time, transcript, startIdx):
+#     if time < transcript[startIdx]["start"]:
+#         return "ERROR!"
     
+
+
 
         
