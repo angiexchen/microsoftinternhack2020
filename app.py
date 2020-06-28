@@ -19,7 +19,6 @@ def index():
         
     elif request.method == 'POST':
         url = request.form.get("link")
-        # Find the video ID from the URL
         startIdx = url.find('=')
         endIndx = url.find('&')
         if not (startIdx == -1 & endIndx == -1):
@@ -27,6 +26,7 @@ def index():
         else: 
             return render_template('error.html', message = "Invalid YouTube URL entered.")
         t1 = YouTubeTranscriptApi.get_transcript(videoId)
+        
         images = get_images()
         result = []
         for i in range(len(images)-1):
@@ -41,7 +41,7 @@ def index():
             result.append(obj)
         testlist = ["one", "two", "three"]
         
-        return render_template('response.html', message = t1, testlist = testlist, images=result)
+        return render_template('response_example.html', message = t1, testlist = testlist, images=result)
 
 def get_closest_less_than_or_equal(transcript, time): 
     text = ""
@@ -77,10 +77,6 @@ class JinjaTemplateObject():
         self.image_file = image_file
         self.text = text 
 
-# def get_closest(time, transcript, startIdx):
-#     if time < transcript[startIdx]["start"]:
-#         return "ERROR!"
-    
 if __name__ == "__main__":
     app.run(debug=True)
 
