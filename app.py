@@ -29,6 +29,9 @@ def index():
         t1 = YouTubeTranscriptApi.get_transcript(videoId)
         images = get_images()
         result = []
+        start_text = get_text(0, extract_int_from_file_extension(images[0]), t1)
+        obj = JinjaTemplateObject('data/frame0.jpg',  start_text)
+        result.append(obj)
         for i in range(len(images)-1):
             start = extract_int_from_file_extension(images[i])
             if start == -1:
@@ -37,7 +40,11 @@ def index():
             if end == -1:
                 continue 
             text = get_text(start, end, t1)
-            obj = JinjaTemplateObject(images[i], text)
+            if i == len(images): 
+                end_text = get_text(end, len(t1) - 1, t1)
+                obj = JinjaTemplateObject(images[i], text + end_text)
+            else: 
+                obj = JinjaTemplateObject(images[i], text)
             result.append(obj)
         testlist = ["one", "two", "three"]
         
