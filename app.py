@@ -30,11 +30,9 @@ def index():
         print(type(t2))
 
         testlist = ["one", "two", "three"]
-        # content = ""
-        # for i in testlist: 
-        #     content += "<p>" + testlist[i] + "</p>" 
         
         return render_template('response.html', message = t1, testlist = testlist)
+
 
 # def get_text(start, end, transcript):
 #     s = get_closest(start, transcript)
