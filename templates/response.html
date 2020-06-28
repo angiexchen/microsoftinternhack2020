@@ -11,6 +11,15 @@
     {% for item in testlist %}
      <p>{{item}}</p>
     {% endfor %}
+    <br/>
+        {% for imageobj in images %}
+            <div style="display: flex;flex-direction: row;">
+                <img src={{ url_for('static', filename=imageobj.image_file)}} alt="image">
+                <p>{{imageobj.text}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <br/>
    {{content}}
 <!-- 
     {{message}} -->

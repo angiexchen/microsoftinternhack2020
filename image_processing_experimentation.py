@@ -19,7 +19,7 @@ for i in range(1, 888):
     if (hasPrev):
         num = np.linalg.norm(current-prev)
         score = compare_ssim(gray_current, gray_prev)
-        if score < 0.97:
+        if score < 0.90:
             print(directory + '/' + 'frame' + str(i) + '.jpg')
             count += 1
     hasPrev = True
