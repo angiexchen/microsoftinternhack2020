@@ -22,12 +22,12 @@
         {% for imageobj in images %}
     
         <div class="row ", style="display: flex;flex-direction: row;">
-            <div class="col-md-7">
+            <div class="col">
               <a href="#">
                 <img class="img-fluid rounded mb-3 mb-md-0" src={{ url_for('static', filename=imageobj.image_file)}} alt="image">
               </a>
             </div>
-            <div class="col-md-5">
+            <div class="col">
               <p>{{imageobj.text}}</p>
             </div>
           </div>
